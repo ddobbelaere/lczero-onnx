@@ -15,11 +15,10 @@ jobs:
 
       - name: Setup environment
         run: |
-          export DEST_DIR=build
-          ./scripts/setup.sh
+          DEST_DIR=build ./scripts/setup.sh
 
       - name: Test environment
         run: |
-          cd ${DEST_DIR}
+          cd build
           . venv/bin/activate
           python -c "import lczero.backends"
