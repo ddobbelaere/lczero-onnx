@@ -20,6 +20,6 @@ It does the following things:
 $ cd ${DEST_DIR} 
 $ . venv/bin/activate
 (venv) $ python
->> import lzero.backends
+>> import lczero.backends
 >> import onnxruntime
 ```
