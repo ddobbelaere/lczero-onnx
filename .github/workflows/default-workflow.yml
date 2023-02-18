@@ -1,7 +1,7 @@
 name: Default workflow
 on: [push]
 jobs:
-  setup-environment:
+  lczero-onnx:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,8 +17,12 @@ jobs:
         run: |
           DEST_DIR=build ./scripts/setup.sh
 
-      - name: Test environment
+      - name: Test
         run: |
-          cd build
-          . venv/bin/activate
-          python -c "import lczero.backends"
+          . build/bin/activate
+          PYTHONPATH=build scripts/test.sh
+
+      - name: Build wheel
+        run: |
+          . build/venv/bin/activate
+          scripts/build-wheel.sh

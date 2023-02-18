@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools >= 40.9.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lczero-onnx"
+authors = [
+    {name = "Dieter Dobbelaere", email = "dieter.dobbelaere@gmail.com"},
+]
+description = "Leela Chess Zero ONNX tools"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "onnxruntime",
+    'importlib-metadata; python_version<"3.8"',
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/ddobbelaere/lczero-onnx"
+"Bug Tracker" = "https://github.com/ddobbelaere/lczero-onnx/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["lczero.onnx.tests*"]
+
+[tool.setuptools_scm]

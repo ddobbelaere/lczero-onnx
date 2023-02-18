@@ -2,7 +2,6 @@
 # This script builds the lc0 python bindings.
 
 set -e
-set -x
 
 # Define installation directory.
 INSTALL_DIR=${INSTALL_DIR:="."}
@@ -36,6 +35,7 @@ pip install -U meson ninja
 
 
 # Copy artifacts to installation directory.
+cp build/release/lc0 "${INSTALL_DIR}"
 cp build/release/*cpython*.so "${INSTALL_DIR}"
 
 # Remove temporary directory.
