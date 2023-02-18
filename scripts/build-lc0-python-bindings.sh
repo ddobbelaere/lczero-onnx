@@ -20,6 +20,9 @@ cd lc0
 LATEST_RELEASE_BRANCH=$(git branch -r -l 'origin/release/*' | sort -r | head -n 1 | awk '{$1=$1};1')
 git checkout "${LATEST_RELEASE_BRANCH}"
 
+# Install build dependencies.
+pip install -U meson ninja
+
 ./build.sh -Dpython_bindings=true
 
 # Copy artifacts to installation directory.
