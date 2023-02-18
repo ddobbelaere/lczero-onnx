@@ -4,7 +4,7 @@
 
 First, install the prerequisites for building [`lc0`](https://github.com/LeelaChessZero/lc0). Next, make sure you have a Python version installed which is supported by the package [`onnxruntime`](https://github.com/microsoft/onnxruntime).
 
-The following script sets up the environment into the optional folder `DEST_DIR` (by default equal to the current directory). The optional environment variable `PYTHON` (by default `$(command -v python)`) can be used to change the Python version.
+The following script sets up the environment into the folder `DEST_DIR` (by default equal to the current directory). The optional environment variable `PYTHON` (by default `$(command -v python)`) can be used to change the Python version.
 
 ```bash
 DEST_DIR=build PYTHON=python3.10 ./scripts/setup.sh

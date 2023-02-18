@@ -13,12 +13,12 @@ INSTALL_DIR=$(CDPATH= cd -- "${INSTALL_DIR}" && pwd)
 TMP_DIR=$(mktemp -d)
 cd "${TMP_DIR}"
 
-# Clone the latest release branch.
+# Clone the lc0 repository and checkout the latest release branch.
 git clone --recurse-submodules https://github.com/LeelaChessZero/lc0.git
 cd lc0
 
 LATEST_RELEASE_BRANCH=$(git branch -r -l 'origin/release/*' | sort -r | head -n 1 | awk '{$1=$1};1')
-git checkout -b "${LATEST_RELEASE_BRANCH}"
+git checkout "${LATEST_RELEASE_BRANCH}"
 
 ./build.sh -Dpython_bindings=true
 

@@ -23,6 +23,6 @@ PYTHON=${PYTHON:=$(command -v python)}
 INSTALL_DIR=lczero "${SCRIPT_DIR}/build-lc0-python-bindings.sh"
 touch lczero/__init__.py
 
-# Install prerequisites.
+# Install required packages.
 pip install -U pip
-pip install -U onnxruntime
+pip install -U -r "${SRC_DIR}/requirements.txt"
