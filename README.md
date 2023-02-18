@@ -2,7 +2,7 @@
 
 ## Setup environment
 
-First, install the prerequisites for building [`lc0`](https://github.com/LeelaChessZero/lc0). Next, make sure you have a Python version installed which is supported by the package [`onnxruntime`](https://github.com/microsoft/onnxruntime).
+Make sure that you have a recent C++ compiler (e.g. `g++`) and a Python version installed which is supported by the package [`onnxruntime`](https://github.com/microsoft/onnxruntime).
 
 The following script sets up the environment into the folder `DEST_DIR` (by default equal to the current directory). The optional environment variable `PYTHON` (by default `$(command -v python)`) can be used to change the Python version.
 

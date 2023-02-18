@@ -20,6 +20,7 @@ jobs:
       - name: Test
         run: |
           . build/venv/bin/activate
+          pip install -U pytest
           PYTHONPATH=build PATH="$PATH:build/bin" scripts/test.sh
 
       - name: Build wheel
