@@ -14,24 +14,25 @@ INSTALL_DIR=$(CDPATH= cd -- "${INSTALL_DIR}" && pwd)
 TMP_DIR=$(mktemp -d)
 cd "${TMP_DIR}"
 
-# Clone the lc0 repository and checkout the latest release branch.
-git clone --recurse-submodules https://github.com/LeelaChessZero/lc0.git
-cd lc0
+if false; then
+    # Clone the lc0 repository and checkout the latest release branch.
+    git clone --recurse-submodules https://github.com/LeelaChessZero/lc0.git
+    cd lc0
 
-LATEST_RELEASE_BRANCH=$(git branch -r -l 'origin/release/*' | sort -r | head -n 1 | awk '{$1=$1};1')
-git checkout "${LATEST_RELEASE_BRANCH}"
+    LATEST_RELEASE_BRANCH=$(git branch -r -l 'origin/release/*' | sort -r | head -n 1 | awk '{$1=$1};1')
+    git checkout "${LATEST_RELEASE_BRANCH}"
+else
+    # Temporarily use a patched lc0 until fixes are in upstream repository.
+    git clone --recurse-submodules https://github.com/ddobbelaere/lc0.git
+    cd lc0
+
+    git checkout "origin/bugfix/ninja-detection"
+fi
 
 # Install build dependencies.
 pip install -U meson ninja
 
 ./build.sh -Dpython_bindings=true
-
-# Debug why ninja does not run.
-cat build/release/meson-logs/meson-log.txt
-NINJA=$(awk '/ninja/ {ninja=$4} END {print ninja}' build/release/meson-logs/meson-log.txt)
-echo ${NINJA}
-NINJA=$(awk '/Found.*ninja/ {ninja=$4} END {print ninja}' build/release/meson-logs/meson-log.txt)
-echo ${NINJA}
 
 
 # Copy artifacts to installation directory.
