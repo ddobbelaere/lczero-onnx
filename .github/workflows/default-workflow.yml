@@ -19,8 +19,8 @@ jobs:
 
       - name: Test
         run: |
-          . build/bin/activate
-          PYTHONPATH=build scripts/test.sh
+          . build/venv/bin/activate
+          PYTHONPATH=build PATH="$PATH:build/bin" scripts/test.sh
 
       - name: Build wheel
         run: |
