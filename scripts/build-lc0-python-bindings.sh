@@ -2,6 +2,7 @@
 # This script builds the lc0 python bindings.
 
 set -e
+set -x
 
 # Define installation directory.
 INSTALL_DIR=${INSTALL_DIR:="."}
@@ -24,6 +25,14 @@ git checkout "${LATEST_RELEASE_BRANCH}"
 pip install -U meson ninja
 
 ./build.sh -Dpython_bindings=true
+
+# Debug why ninja does not run.
+cat build/release/meson-logs/meson-log.txt
+NINJA=$(awk '/ninja/ {ninja=$4} END {print ninja}' build/release/meson-logs/meson-log.txt)
+echo ${NINJA}
+NINJA=$(awk '/Found.*ninja/ {ninja=$4} END {print ninja}' build/release/meson-logs/meson-log.txt)
+echo ${NINJA}
+
 
 # Copy artifacts to installation directory.
 cp build/release/*cpython*.so "${INSTALL_DIR}"
